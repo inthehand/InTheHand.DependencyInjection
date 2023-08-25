@@ -1,8 +1,16 @@
-﻿namespace InTheHand.DependencyInjection
+﻿//-----------------------------------------------------------------------
+// <copyright file="DependencyService.cs" company="In The Hand Ltd">
+//   Copyright (c) 2023 In The Hand Ltd, All rights reserved.
+//   This source code is licensed under the MIT License
+// </copyright>
+//-----------------------------------------------------------------------
+
+namespace InTheHand.DependencyInjection
 {
     /// <summary>
-    /// A port of the Xamarin.Forms DependencyService
+    /// Static class that provides the <see cref="Get{T}(DependencyFetchTarget)"/> factory method for retrieving platform-specific implementations of the specified type T.
     /// </summary>
+    /// <remarks>Ported from the Xamarin.Forms implementation. Redundant renderer specific implementation details have been removed.</remarks>
     public static partial class DependencyService
     {
         static readonly object s_dependencyLock = new object();
@@ -13,9 +21,9 @@
         /// <summary>
         /// Returns the platform-specific implementation of type T.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="fetchTarget"></param>
-        /// <returns></returns>
+        /// <typeparam name="T">The type of object to fetch.</typeparam>
+        /// <param name="fetchTarget">The dependency fetch target.</param>
+        /// <returns>T</returns>
         public static T? Get<T>(DependencyFetchTarget fetchTarget = DependencyFetchTarget.GlobalInstance) where T : class
         {
             DependencyData dependencyImplementation;
@@ -105,7 +113,7 @@
         /// <summary>
         /// Registers the platform-specific implementation of type T.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">The type of object to register.</typeparam>
         public static void Register<T>() where T : class
         {
             Type type = typeof(T);
@@ -116,8 +124,8 @@
         /// <summary>
         /// Registers the platform-specific implementation of type T.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <typeparam name="TImpl"></typeparam>
+        /// <typeparam name="T">The type of object to register.</typeparam>
+        /// <typeparam name="TImpl">The implementation to register.</typeparam>
         public static void Register<T, TImpl>() where T : class where TImpl : class, T
         {
             Type targetType = typeof(T);
@@ -129,6 +137,11 @@
                 DependencyImplementations[targetType] = new DependencyData { ImplementorType = implementorType };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="instance"></param>
         public static void RegisterSingleton<T>(T instance) where T : class
         {
             Type targetType = typeof(T);
