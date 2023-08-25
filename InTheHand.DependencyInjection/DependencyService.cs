@@ -16,7 +16,7 @@
         /// <typeparam name="T"></typeparam>
         /// <param name="fetchTarget"></param>
         /// <returns></returns>
-        public static T Get<T>(DependencyFetchTarget fetchTarget = DependencyFetchTarget.GlobalInstance) where T : class
+        public static T? Get<T>(DependencyFetchTarget fetchTarget = DependencyFetchTarget.GlobalInstance) where T : class
         {
             DependencyData dependencyImplementation;
             lock (s_dependencyLock)
@@ -147,9 +147,9 @@
 
         class DependencyData
         {
-            public object GlobalInstance { get; set; }
+            public object? GlobalInstance { get; set; }
 
-            public Type ImplementorType { get; set; }
+            public Type? ImplementorType { get; set; }
         }
     }
 }
