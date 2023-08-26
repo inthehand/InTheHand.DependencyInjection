@@ -19,4 +19,4 @@ the DependencyService will look up those types in the container
 and instantiate these using either a singleton or a new instance depending on how they were registered and inject them into the constructor.
 The types referenced must have been registered with DependencyService prior to the call to Get which references them.
 
-![Nuget](https://img.shields.io/nuget/dt/InTheHand.DependencyInjection)
+![Nuget](https://img.shields.io/nuget/v/InTheHand.DependencyInjection)
