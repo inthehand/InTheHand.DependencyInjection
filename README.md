@@ -7,9 +7,11 @@ Usage is the same as in Xamarin forms with the exception that DependencyAttribut
 
 ## Usage
 
-Register a type with `DependencyService.Register<YourType>();` or with a specific implementation using `DependencyService.Register<IYourInterface, YourType>();`
+Register a type with `DependencyService.Register<YourType>();` or with an interface and a specific implementation using `DependencyService.Register<IYourInterface, YourType>();`
 
 Retrieve an instance with `DependencyService.Get<IYourInterface>();` using the interface or class type your registered.
+Optionally specify whether to return a global instance or a new instance using the fetchTarget argument. e.g. for a new instance:
+`var newInstance = DependencyService.Get<IYourInterface>(DependencyFetchTarget.NewInstance);`
 
 This class extends the DependencyService with support for parameterized constructors. 
 For example when registering a type `MyType` with a default constructor of the form `MyType(IService1 service1, IService2 service2)` 
